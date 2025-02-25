@@ -9,7 +9,7 @@ export class CreateDriversTable1708365600003 implements MigrationInterface {
           { name: "id", type: "serial", isPrimary: true },
           { name: "full_address", type: "varchar", length: "255", isNullable: true },
           { name: "document", type: "varchar", length: "30", isNullable: false },
-          { name: "user_id", type: "int", isNullable: false },
+          { name: "user_id", type: "int", isNullable: false }, // 🔹 Garantindo a FK correta
           { name: "created_at", type: "timestamp", default: "now()" },
           { name: "updated_at", type: "timestamp", default: "now()" },
         ],
