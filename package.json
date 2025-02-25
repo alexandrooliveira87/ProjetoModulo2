@@ -31,6 +31,7 @@
       "start:prod": "node build/index.js",
       "postinstall": "tsc",
       "start": "ts-node-dev --respawn --transpile-only src/index.ts",
+      "dev": "ts-node-dev --transpile-only src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
       "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run",
       "migration:revert": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:revert"

@@ -71,3 +71,13 @@
 [19-02-2025 04:17:54.558 PM] info: 	Servidor rodando em http://localhost:3000
 [19-02-2025 04:21:35.821 PM] info: 	Servidor rodando em http://localhost:3000
 [19-02-2025 04:21:47.017 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:32:38.062 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:34:45.784 AM] error: 	coluna "userId" da relação "drivers" não existe
+[25-02-2025 08:37:10.101 AM] error: 	coluna "userId" da relação "drivers" não existe
+[25-02-2025 08:37:54.937 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:38:09.473 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:40:09.362 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:51:10.929 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:51:33.771 AM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 08:51:44.219 AM] error: 	coluna "userId" da relação "branches" não existe
+[25-02-2025 08:52:33.622 AM] info: 	Servidor rodando em http://localhost:3000

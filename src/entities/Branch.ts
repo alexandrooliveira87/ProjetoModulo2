@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity("branches")
@@ -13,6 +13,7 @@ export class Branch {
   document: string;
 
   @ManyToOne(() => User, (user) => user.id, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "user_id" }) // 🔹 Garantindo que a FK seja corretamente nomeada
   user: User;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

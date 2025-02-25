@@ -1,50 +1,56 @@
-import validator from "validator";
-
 export const isValidCPF = (cpf: string): boolean => {
   cpf = cpf.replace(/\D/g, ""); // Remove caracteres não numéricos
-  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false; // Verifica sequências repetidas (ex: 111.111.111-11)
 
   let sum = 0, remainder;
-  for (let i = 1; i <= 9; i++) sum += parseInt(cpf[i - 1]) * (11 - i);
+
+  for (let i = 1; i <= 9; i++) {
+    sum += parseInt(cpf.charAt(i - 1)) * (11 - i);
+  }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  if (remainder !== parseInt(cpf[9])) return false;
+  if (remainder !== parseInt(cpf.charAt(9))) return false;
 
   sum = 0;
-  for (let i = 1; i <= 10; i++) sum += parseInt(cpf[i - 1]) * (12 - i);
+  for (let i = 1; i <= 10; i++) {
+    sum += parseInt(cpf.charAt(i - 1)) * (12 - i);
+  }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  return remainder === parseInt(cpf[10]);
+
+  return remainder === parseInt(cpf.charAt(10));
 };
 
 export const isValidCNPJ = (cnpj: string): boolean => {
-  cnpj = cnpj.replace(/\D/g, ""); // Remove caracteres não numéricos
-  if (cnpj.length !== 14) return false;
+  cnpj = cnpj.replace(/\D/g, ""); // Remove tudo que não for número
 
-  let length = cnpj.length - 2;
-  let numbers = cnpj.substring(0, length);
-  let digits = cnpj.substring(length);
-  let sum = 0;
-  let pos = length - 7;
-  
-  for (let i = length; i >= 1; i--) {
-    sum += parseInt(numbers.charAt(length - i)) * pos--;
+  if (cnpj.length !== 14 || /^(\d)\1{13}$/.test(cnpj)) return false; // Evita sequências repetidas (ex: 000.000.000-00)
+
+  let tamanho = cnpj.length - 2;
+  let numeros = cnpj.substring(0, tamanho);
+  let digitos = cnpj.substring(tamanho);
+  let soma = 0;
+  let pos = tamanho - 7;
+
+  for (let i = tamanho; i >= 1; i--) {
+    soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
     if (pos < 2) pos = 9;
   }
 
-  let result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-  if (result !== parseInt(digits.charAt(0))) return false;
+  let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  if (resultado !== parseInt(digitos.charAt(0))) return false;
 
-  length = length + 1;
-  numbers = cnpj.substring(0, length);
-  sum = 0;
-  pos = length - 7;
-  
-  for (let i = length; i >= 1; i--) {
-    sum += parseInt(numbers.charAt(length - i)) * pos--;
+  tamanho++;
+  numeros = cnpj.substring(0, tamanho);
+  soma = 0;
+  pos = tamanho - 7;
+
+  for (let i = tamanho; i >= 1; i--) {
+    soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
     if (pos < 2) pos = 9;
   }
 
-  result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-  return result === parseInt(digits.charAt(1));
+  resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  return resultado === parseInt(digitos.charAt(1));
 };
