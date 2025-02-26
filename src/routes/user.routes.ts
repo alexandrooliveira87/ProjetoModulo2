@@ -1,9 +1,24 @@
 import { Router } from "express";
 import UserController from "../controllers/UserController";
+import verifyToken from "../middlewares/auth";
+import verifyAdmin from "../middlewares/verifyAdmin";
 
 const userRouter = Router();
-const userController = new UserController();
+const userController = new UserController(); // 🔹 Criando a instância corretamente
 
-userRouter.post("/", userController.create); // 🔹 Certifique-se de que o método `create` está definido no UserController
+// 🔹 Verifica se os métodos `create` e `list` existem
+if (!userController.create || !userController.list) {
+  throw new Error("UserController methods are undefined! Verifique se os métodos estão declarados corretamente.");
+}
+
+// 🔹 Rota de criação de usuário (Apenas ADMIN)
+userRouter.post("/", verifyToken, verifyAdmin, (req, res, next) => {
+  userController.create(req, res, next);
+});
+
+// 🔹 Rota de listagem de usuários (Apenas ADMIN)
+userRouter.get("/", verifyToken, verifyAdmin, (req, res, next) => {
+  userController.list(req, res, next);
+});
 
 export default userRouter;

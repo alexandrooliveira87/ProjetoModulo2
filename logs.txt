@@ -1,116 +1,31 @@
-[19-02-2025 12:42:22.300 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 12:44:25.533 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 12:44:29.686 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 12:44:32.720 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 12:44:36.404 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 12:45:31.699 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 01:06:05.147 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:37:41.219 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:37:58.251 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:39:39.940 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:45:14.063 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:45:25.549 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:45:47.707 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:48:35.481 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:48:45.065 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 02:48:53.039 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 03:07:49.615 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 03:08:23.086 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 03:12:08.655 PM] info: 	O servidor está rodando em http://localhost:3000
-[19-02-2025 03:12:23.042 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:15:03.598 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:15:41.776 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:17:19.975 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:20:21.187 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:20:23.816 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:20:30.700 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:22:18.855 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:22:22.070 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:22:35.080 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:22:38.427 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:26:24.100 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:26:42.437 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:27:50.814 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:32:33.335 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:32:37.514 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:32:41.986 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:33:07.726 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:33:32.097 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:33:34.388 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:33:56.398 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:34:41.962 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:35:52.548 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:36:51.818 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:37:08.223 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:37:17.596 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:37:19.316 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:37:58.380 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:38:07.505 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:41:27.997 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:41:44.280 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:41:56.585 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:42:03.482 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:42:05.482 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:42:12.495 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:42:18.489 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:43:05.946 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:45:29.037 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:46:07.730 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:48:04.813 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:50:22.924 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:52:15.565 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:53:17.863 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:53:45.344 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:53:59.743 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:54:12.903 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:56:23.310 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:56:32.575 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:56:39.656 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 03:59:45.004 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 04:13:51.030 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 04:17:54.558 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 04:21:35.821 PM] info: 	Servidor rodando em http://localhost:3000
-[19-02-2025 04:21:47.017 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:32:38.062 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:34:45.784 AM] error: 	coluna "userId" da relação "drivers" não existe
-[25-02-2025 08:37:10.101 AM] error: 	coluna "userId" da relação "drivers" não existe
-[25-02-2025 08:37:54.937 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:38:09.473 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:40:09.362 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:51:10.929 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:51:33.771 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 08:51:44.219 AM] error: 	coluna "userId" da relação "branches" não existe
-[25-02-2025 08:52:33.622 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 09:19:19.817 AM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 01:57:44.478 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 01:57:48.010 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 01:58:09.776 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 01:58:14.686 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 01:59:56.180 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:51:09.333 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:51:11.761 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:51:26.534 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:53:48.369 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:55:08.298 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 02:56:06.116 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:18.147 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:19.849 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:22.025 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:24.194 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:26.079 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:32.015 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 02:59:35.462 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 03:00:40.422 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 03:00:53.816 PM] info: 	✅ Servidor rodando em http://localhost:3000
-[25-02-2025 03:01:15.699 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:07:42.244 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:02.450 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:24.293 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:34.737 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:39.166 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:40.759 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:08:43.767 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:10:04.997 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:10:13.096 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:10:28.710 PM] info: 	Servidor rodando em http://localhost:3000
-[25-02-2025 03:14:16.805 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:12:11.631 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:12:39.735 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:13:01.273 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:13:04.745 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:13:15.333 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:18:17.434 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:18:25.773 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:19:41.519 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:21:16.989 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:22:28.910 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:23:37.733 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:25:39.897 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:25:46.809 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:28:27.416 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:28:51.242 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:31:01.527 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:32:26.352 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:32:33.819 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:34:14.725 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:35:44.180 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:42:33.386 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:42:49.450 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:43:39.559 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:43:54.059 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:45:48.477 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 05:46:05.446 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:49:16.442 PM] info: 	Servidor rodando em http://localhost:3001
+[25-02-2025 05:50:00.489 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 09:17:53.424 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 09:22:05.756 PM] info: 	Servidor rodando em http://localhost:3000
+[25-02-2025 09:23:11.591 PM] info: 	Servidor rodando em http://localhost:3000
