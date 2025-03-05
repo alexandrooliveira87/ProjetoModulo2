@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/login", authRouter);
-app.use("/products", productRouter); // 🔹 Adicionando rota de produtos
+app.use("/products", productRouter); 
 app.use("/movements", movementRouter);
 app.get("/", (req, res) => {
   res.send("API está rodando!");

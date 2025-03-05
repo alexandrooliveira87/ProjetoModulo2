@@ -13,7 +13,7 @@ export class Driver {
   document: string;
 
   @ManyToOne(() => User, (user) => user.id, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" }) // 🔹 Corrigindo a referência explícita da FK
+  @JoinColumn({ name: "user_id" }) 
   user: User;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
