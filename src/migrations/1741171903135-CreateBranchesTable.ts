@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { User } from "./User";
-import { Product } from "./Product";
+import { User } from "../entities/User";
+import { Product } from "../entities/Product";
 
 @Entity("branches")
 export class Branch {
@@ -17,7 +17,7 @@ export class Branch {
   @JoinColumn({ name: "user_id" }) 
   user: User;
 
-  // 🔹 Adicionando corretamente a relação com produtos
+  // 🔹 RELAÇÃO CORRETA: Um Branch pode ter vários Produtos
   @OneToMany(() => Product, (product) => product.branch)
   products: Product[];
 

@@ -5,7 +5,7 @@ import { Driver } from "../entities/Driver";
 import { Branch } from "../entities/Branch";
 import bcrypt from "bcrypt";
 import AppError from "../utils/AppError";
-
+import { isValidCPF, isValidCNPJ } from "../utils/validateDocuments";
 class UserController {
   private userRepository;
   private driverRepository;
@@ -17,16 +17,92 @@ class UserController {
     this.branchRepository = AppDataSource.getRepository(Branch);
 
     // 🔹 Vinculando métodos para evitar problemas de escopo
+    this.create = this.create.bind(this);
     this.getAllUsers = this.getAllUsers.bind(this);
     this.getUserById = this.getUserById.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateUserStatus = this.updateUserStatus.bind(this);
   }
 
+  // 🔹 Criar um novo usuário
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { name, profile, email, password, document, full_address } = req.body;
+
+      if (!name || !profile || !email || !password || !document) {
+        throw new AppError("Todos os campos obrigatórios devem ser preenchidos.", 400);
+      }
+
+      if (!["DRIVER", "BRANCH", "ADMIN"].includes(profile)) {
+        throw new AppError("Perfil inválido! Use DRIVER, BRANCH ou ADMIN.", 400);
+      }
+
+      // Verificar se o e-mail já existe
+      const existingUser = await this.userRepository.findOne({ where: { email } });
+      if (existingUser) {
+        throw new AppError("Email já cadastrado!", 409);
+      }
+
+      // Validação de CPF e CNPJ
+      if (profile === "DRIVER" && !isValidCPF(document)) {
+        throw new AppError("CPF inválido!", 400);
+      }
+      if (profile === "BRANCH" && !isValidCNPJ(document)) {
+        throw new AppError("CNPJ inválido!", 400);
+      }
+
+      // Criptografar a senha antes de salvar
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Criar usuário
+      const user = this.userRepository.create({
+        name,
+        profile,
+        email,
+        password_hash: hashedPassword,
+        status: true,
+      });
+
+      await this.userRepository.save(user);
+
+      // Se for DRIVER, criar na tabela drivers
+      if (profile === "DRIVER") {
+        const driver = this.driverRepository.create({
+          document,
+          full_address,
+          user,
+        });
+        await this.driverRepository.save(driver);
+      }
+
+      // Se for BRANCH, criar na tabela branches
+      if (profile === "BRANCH") {
+        const branch = this.branchRepository.create({
+          document,
+          full_address,
+          user,
+        });
+        await this.branchRepository.save(branch);
+      }
+
+      return res.status(201).json({
+        message: "Usuário criado com sucesso!",
+        user: {
+          id: user.id,
+          name: user.name,
+          profile: user.profile,
+          email: user.email,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   // 🔹 Listar todos os usuários (Somente ADMIN)
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      const authenticatedUser = await this.userRepository.findOne({ where: { id: req.userId } });
+      const authenticatedUser = await this.userRepository.findOne({ where: { id: req.body.userId } });
 
       if (!authenticatedUser || authenticatedUser.profile !== "ADMIN") {
         throw new AppError("Acesso negado!", 401);
@@ -50,7 +126,7 @@ class UserController {
   async getUserById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const userId = req.userId;
+      const userId = req.body.userId;
 
       const authenticatedUser = await this.userRepository.findOne({ where: { id: userId } });
 
@@ -82,7 +158,7 @@ class UserController {
     try {
       const { id } = req.params;
       const { name, email, password, full_address } = req.body;
-      const userId = req.userId;
+      const userId = req.body.userId;
 
       const authenticatedUser = await this.userRepository.findOne({ where: { id: userId } });
 
@@ -100,10 +176,6 @@ class UserController {
         throw new AppError("Acesso negado!", 401);
       }
 
-      if (req.body.id || req.body.created_at || req.body.updated_at || req.body.status || req.body.profile) {
-        throw new AppError("Não é permitido atualizar id, created_at, updated_at, status ou profile!", 401);
-      }
-
       if (email && email !== userToUpdate.email) {
         const existingUser = await this.userRepository.findOne({ where: { email } });
         if (existingUser) {
@@ -114,28 +186,6 @@ class UserController {
 
       if (name) userToUpdate.name = name;
       if (password) userToUpdate.password_hash = await bcrypt.hash(password, 10);
-
-      if (userToUpdate.profile === "DRIVER" && full_address) {
-        let driver = await this.driverRepository.findOne({ where: { user: { id: userToUpdate.id } } });
-
-        if (!driver) {
-          driver = this.driverRepository.create({ user: userToUpdate, full_address });
-        } else {
-          driver.full_address = full_address;
-        }
-        await this.driverRepository.save(driver);
-      }
-
-      if (userToUpdate.profile === "BRANCH" && full_address) {
-        let branch = await this.branchRepository.findOne({ where: { user: { id: userToUpdate.id } } });
-
-        if (!branch) {
-          branch = this.branchRepository.create({ user: userToUpdate, full_address });
-        } else {
-          branch.full_address = full_address;
-        }
-        await this.branchRepository.save(branch);
-      }
 
       await this.userRepository.save(userToUpdate);
 
@@ -148,7 +198,6 @@ class UserController {
           profile: userToUpdate.profile,
         },
       });
-
     } catch (error) {
       next(error);
     }
@@ -158,7 +207,7 @@ class UserController {
   async updateUserStatus(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const userId = req.userId;
+      const userId = req.body.userId;
 
       const authenticatedUser = await this.userRepository.findOne({ where: { id: userId } });
 
@@ -182,7 +231,6 @@ class UserController {
           status: userToUpdate.status,
         },
       });
-
     } catch (error) {
       next(error);
     }
