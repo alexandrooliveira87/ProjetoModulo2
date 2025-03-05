@@ -8,7 +8,7 @@ type dataJwt = JwtPayload & { userId: string };
 
 export interface AuthRequest extends Request {
   userId: string;
-  user?: User; // 🔹 Adicionando o usuário completo ao request
+  user?: User; //  Adicionando o usuário completo ao request
 }
 
 
@@ -28,7 +28,7 @@ export const verifyToken = async (
 
     req.userId = data.userId;
 
-    // 🔹 Buscando o usuário no banco para adicionar ao request
+    //  Buscando o usuário no banco para adicionar ao request
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({ where: { id: parseInt(req.userId) } });
 
@@ -36,7 +36,7 @@ export const verifyToken = async (
       throw new AppError("Usuário não encontrado!", 403);
     }
 
-    req.user = user; // 🔹 Adicionando o usuário autenticado ao request
+    req.user = user; //  Adicionando o usuário autenticado ao request
 
     next();
   } catch (error) {

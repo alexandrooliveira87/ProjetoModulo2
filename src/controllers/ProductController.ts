@@ -16,7 +16,7 @@ class ProductController {
     this.getAllProducts = this.getAllProducts.bind(this);
   }
 
-  // 🔹 Criar Produto
+  //  Criar Produto
   async createProduct(req: Request, res: Response, next: NextFunction) {
     try {
       const { name, amount, description, url_cover } = req.body;
@@ -26,7 +26,7 @@ class ProductController {
         throw new AppError("Todos os campos obrigatórios devem ser preenchidos.", 400);
       }
 
-      // 🔹 Encontrar a filial vinculada ao usuário logado
+      //  Encontrar a filial vinculada ao usuário logado
       const branch = await this.branchRepository.findOne({
         where: { user: { id: userId } },
       });
@@ -35,13 +35,13 @@ class ProductController {
         throw new AppError("Usuário não pertence a uma filial.", 403);
       }
 
-      // 🔹 Criar novo produto vinculado à filial
+      //  Criar novo produto vinculado à filial
       const newProduct = this.productRepository.create({
         name,
         amount,
         description,
         url_cover,
-        branch, // 🔹 Associar o produto à filial do usuário
+        branch, //  Associar o produto à filial do usuário
       });
 
       await this.productRepository.save(newProduct);
@@ -52,12 +52,12 @@ class ProductController {
     }
   }
 
-  // 🔹 Listar Produtos
+  //  Listar Produtos
   async getAllProducts(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.userId;
 
-      // 🔹 Verificar se o usuário pertence a uma filial
+      // Verificar se o usuário pertence a uma filial
       const branch = await this.branchRepository.findOne({
         where: { user: { id: userId } },
       });
@@ -66,7 +66,7 @@ class ProductController {
         throw new AppError("Acesso negado. Apenas filiais podem listar produtos.", 403);
       }
 
-      // 🔹 Buscar todos os produtos da filial do usuário
+      //  Buscar todos os produtos da filial do usuário
       const products = await this.productRepository.find({
         where: { branch: { id: branch.id } },
         relations: ["branch"],

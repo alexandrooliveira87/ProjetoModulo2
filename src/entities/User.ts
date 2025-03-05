@@ -22,11 +22,11 @@ export class User {
   @Column({ type: "boolean", default: true })
   status: boolean;
 
-  // 🔹 Relacionamento com a tabela de Motoristas (Opcional)
+  
   @OneToOne(() => Driver, (driver) => driver.user, { nullable: true })
   driver?: Driver;
 
-  // 🔹 Relacionamento com a tabela de Filiais (Opcional)
+  
   @OneToOne(() => Branch, (branch) => branch.user, { nullable: true })
   branch?: Branch;
 

@@ -16,7 +16,7 @@ class UserController {
     this.driverRepository = AppDataSource.getRepository(Driver);
     this.branchRepository = AppDataSource.getRepository(Branch);
 
-    // 🔹 Vinculando métodos para evitar problemas de escopo
+    // Vinculando métodos para evitar problemas de escopo
     this.create = this.create.bind(this);
     this.getAllUsers = this.getAllUsers.bind(this);
     this.getUserById = this.getUserById.bind(this);
@@ -24,7 +24,7 @@ class UserController {
     this.updateUserStatus = this.updateUserStatus.bind(this);
   }
 
-  // 🔹 Criar um novo usuário
+  // Criar um novo usuário
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { name, profile, email, password, document, full_address } = req.body;
@@ -99,7 +99,7 @@ class UserController {
     }
   }
 
-  // 🔹 Listar todos os usuários (Somente ADMIN)
+  //  Listar todos os usuários (Somente ADMIN)
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const authenticatedUser = await this.userRepository.findOne({ where: { id: req.body.userId } });
@@ -122,7 +122,7 @@ class UserController {
     }
   }
 
-  // 🔹 Buscar um usuário por ID (ADMIN ou próprio MOTORISTA)
+  //  Buscar um usuário por ID (ADMIN ou próprio MOTORISTA)
   async getUserById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
@@ -153,7 +153,7 @@ class UserController {
     }
   }
 
-  // 🔹 Atualizar um usuário (ADMIN ou próprio MOTORISTA)
+  //  Atualizar um usuário (ADMIN ou próprio MOTORISTA)
   async updateUser(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
@@ -203,7 +203,7 @@ class UserController {
     }
   }
 
-  // 🔹 Atualizar status do usuário (Somente ADMIN)
+  //  Atualizar status do usuário (Somente ADMIN)
   async updateUserStatus(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;

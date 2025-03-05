@@ -17,7 +17,7 @@ export class Branch {
   @JoinColumn({ name: "user_id" }) 
   user: User;
 
-  // 🔹 Adicionando corretamente a relação com produtos
+
   @OneToMany(() => Product, (product) => product.branch)
   products: Product[];
 
