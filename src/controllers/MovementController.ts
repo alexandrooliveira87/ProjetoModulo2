@@ -15,75 +15,94 @@ class MovementController {
     this.productRepository = AppDataSource.getRepository(Product);
     this.branchRepository = AppDataSource.getRepository(Branch);
 
-    // 🔹 Vincular os métodos ao contexto correto
     this.createMovement = this.createMovement.bind(this);
+    this.listMovements = this.listMovements.bind(this);
   }
 
+  // 🔹 Criar Movimentação
   async createMovement(req: Request, res: Response, next: NextFunction) {
     try {
       const { destination_branch_id, product_id, quantity } = req.body;
       const userId = req.userId;
 
-      if (!destination_branch_id || !product_id || !quantity) {
-        throw new AppError("Todos os campos são obrigatórios", 400);
-      }
-
-      if (quantity <= 0) {
-        throw new AppError("A quantidade deve ser maior que zero", 400);
-      }
-
-      // 🔹 Verifica a filial do usuário (FILIAL)
-      const userBranch = await this.branchRepository.findOne({
+      // ✅ Verifica se o usuário pertence a uma filial
+      const branch = await this.branchRepository.findOne({
         where: { user: { id: userId } },
       });
 
-      if (!userBranch) {
-        throw new AppError("Usuário não está vinculado a uma filial", 403);
+      if (!branch) {
+        throw new AppError("Apenas FILIAIS podem criar movimentações!", 401);
       }
 
-      // 🔹 Verifica se o produto pertence à filial de origem
+      // ✅ Verifica se o produto pertence à filial de origem
       const product = await this.productRepository.findOne({
-        where: { id: product_id, branch: { id: userBranch.id } },
+        where: { id: product_id, branch: { id: branch.id } },
       });
 
       if (!product) {
-        throw new AppError("Produto não encontrado na filial de origem", 404);
+        throw new AppError("Produto não encontrado na filial!", 404);
       }
 
-      // 🔹 Verifica se a filial de destino é diferente da de origem
-      if (userBranch.id === destination_branch_id) {
-        throw new AppError(
-          "A filial de origem não pode ser a mesma que a filial de destino",
-          400
-        );
+      // ✅ Verifica se a filial de destino existe
+      const destinationBranch = await this.branchRepository.findOne({
+        where: { id: destination_branch_id },
+      });
+
+      if (!destinationBranch) {
+        throw new AppError("Filial de destino não encontrada!", 404);
       }
 
-      // 🔹 Verifica se há estoque suficiente
-      if (product.amount < quantity) {
-        throw new AppError(
-          "Estoque insuficiente para essa movimentação",
-          400
-        );
+      // ✅ Valida se a filial de destino é diferente da de origem
+      if (branch.id === destination_branch_id) {
+        throw new AppError("A filial de origem não pode ser a mesma que a filial de destino!", 400);
       }
 
-      // 🔹 Atualiza o estoque da filial de origem
+      // ✅ Verifica se há estoque suficiente
+      if (quantity <= 0 || quantity > product.amount) {
+        throw new AppError("Estoque insuficiente para essa movimentação!", 400);
+      }
+
+      // ✅ Atualiza o estoque do produto na filial de origem
       product.amount -= quantity;
       await this.productRepository.save(product);
 
-      // 🔹 Cria a movimentação
-      const movement = this.movementRepository.create({
-        destination_branch: { id: destination_branch_id },
-        product,
+      // ✅ Cria a movimentação
+      const newMovement = this.movementRepository.create({
+        destinationBranch: destinationBranch, // ✅ Referência direta ao objeto
+        product: product,
         quantity,
         status: "PENDING",
       });
 
-      await this.movementRepository.save(movement);
+      await this.movementRepository.save(newMovement);
 
-      return res.status(201).json({
-        message: "Movimentação criada com sucesso!",
-        movement,
+      return res.status(201).json(newMovement);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // 🔹 Listar Movimentações
+  async listMovements(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.userId;
+
+      // ✅ Verifica se o usuário tem permissão (FILIAL ou MOTORISTA)
+      const branch = await this.branchRepository.findOne({
+        where: { user: { id: userId } },
       });
+
+      if (!branch) {
+        throw new AppError("Acesso negado! Apenas FILIAL ou MOTORISTA podem visualizar movimentações.", 401);
+      }
+
+      // ✅ Obtém todas as movimentações
+      const movements = await this.movementRepository.find({
+        relations: ["destinationBranch", "product"],
+        order: { created_at: "DESC" },
+      });
+
+      return res.status(200).json({ movements });
     } catch (error) {
       next(error);
     }

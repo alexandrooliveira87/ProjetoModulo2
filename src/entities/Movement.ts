@@ -16,27 +16,23 @@ export class Movement {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Branch)
+  @ManyToOne(() => Branch, { onDelete: "CASCADE" })
   @JoinColumn({ name: "destination_branch_id" })
-  destination_branch: Branch;
+  destinationBranch: Branch;
 
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Product, { onDelete: "CASCADE" })
   @JoinColumn({ name: "product_id" })
   product: Product;
 
-  @ManyToOne(() => Driver, { nullable: true })
+  @ManyToOne(() => Driver, { nullable: true, onDelete: "SET NULL" })
   @JoinColumn({ name: "driver_id" })
-  driver: Driver;
+  driver?: Driver;
 
-  @Column({ type: "int", nullable: false })
+  @Column({ type: "int" })
   quantity: number;
 
-  @Column({
-    type: "enum",
-    enum: ["PENDING", "IN_PROGRESS", "FINISHED"],
-    default: "PENDING",
-  })
-  status: "PENDING" | "IN_PROGRESS" | "FINISHED";
+  @Column({ type: "enum", enum: ["PENDING", "IN_PROGRESS", "FINISHED"], default: "PENDING" })
+  status: string;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
