@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.routes";
 import productRouter from "./routes/product.routes";
 import { handleError } from "./middlewares/handleError";
 import logger from "./config/winston";
+import movementRouter from "./routes/movement.routes";
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/login", authRouter);
 app.use("/products", productRouter); // 🔹 Adicionando rota de produtos
-
+app.use("/movements", movementRouter);
 app.get("/", (req, res) => {
   res.send("API está rodando!");
 });
