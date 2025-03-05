@@ -8,6 +8,7 @@ import { handleError } from "./middlewares/handleError";
 import logger from "./config/winston";
 import movementRouter from "./routes/movement.routes";
 
+
 const app = express();
 
 app.use(cors());

@@ -11,6 +11,7 @@ export interface AuthRequest extends Request {
   user?: User; // 🔹 Adicionando o usuário completo ao request
 }
 
+
 export const verifyToken = async (
   req: AuthRequest,
   _res: Response,
