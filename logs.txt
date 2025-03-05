@@ -12,3 +12,7 @@
 [05-03-2025 01:26:02.889 AM] info: 	Servidor rodando em http://localhost:3000
 [05-03-2025 01:26:19.372 AM] info: 	Servidor rodando em http://localhost:3000
 [05-03-2025 01:26:41.726 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:42:16.294 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:42:30.124 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:45:03.233 AM] error: 	duplicar valor da chave viola a restrição de unicidade "UQ_97672ac88f789774dd47f7c8be3"
+[05-03-2025 01:47:01.727 AM] info: 	Servidor rodando em http://localhost:3000
