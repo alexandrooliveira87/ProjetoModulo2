@@ -1,0 +1,14 @@
+[05-03-2025 12:53:30.720 AM] error: 	Erro ao conectar ao banco de dados: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[05-03-2025 12:53:43.508 AM] error: 	Erro ao conectar ao banco de dados: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[05-03-2025 01:05:25.091 AM] error: 	Erro ao conectar ao banco de dados: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[05-03-2025 01:10:08.027 AM] error: 	Erro ao conectar ao banco de dados: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[05-03-2025 01:10:55.292 AM] error: 	Erro ao conectar ao banco de dados: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[05-03-2025 01:14:23.680 AM] error: 	Erro ao conectar ao banco de dados: connect ECONNREFUSED ::1:5431
+[05-03-2025 01:16:52.672 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:19:04.314 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:20:12.179 AM] error: 	Property "driver" was not found in "User". Make sure your query is correct.
+[05-03-2025 01:21:27.524 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:22:58.450 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:26:02.889 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:26:19.372 AM] info: 	Servidor rodando em http://localhost:3000
+[05-03-2025 01:26:41.726 AM] info: 	Servidor rodando em http://localhost:3000
