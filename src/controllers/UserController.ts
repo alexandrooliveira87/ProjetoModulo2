@@ -20,6 +20,7 @@ class UserController {
     this.getAllUsers = this.getAllUsers.bind(this);
     this.getUserById = this.getUserById.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.updateUserStatus = this.updateUserStatus.bind(this);
   }
 
   // 🔹 Listar todos os usuários (Somente ADMIN)
@@ -99,12 +100,10 @@ class UserController {
         throw new AppError("Acesso negado!", 401);
       }
 
-      // 🔹 Impedir atualização de campos protegidos
       if (req.body.id || req.body.created_at || req.body.updated_at || req.body.status || req.body.profile) {
         throw new AppError("Não é permitido atualizar id, created_at, updated_at, status ou profile!", 401);
       }
 
-      // 🔹 Verificar se o email já existe antes de atualizar
       if (email && email !== userToUpdate.email) {
         const existingUser = await this.userRepository.findOne({ where: { email } });
         if (existingUser) {
@@ -116,7 +115,6 @@ class UserController {
       if (name) userToUpdate.name = name;
       if (password) userToUpdate.password_hash = await bcrypt.hash(password, 10);
 
-      // 🔹 Atualiza endereço se for DRIVER
       if (userToUpdate.profile === "DRIVER" && full_address) {
         let driver = await this.driverRepository.findOne({ where: { user: { id: userToUpdate.id } } });
 
@@ -128,7 +126,6 @@ class UserController {
         await this.driverRepository.save(driver);
       }
 
-      // 🔹 Atualiza endereço se for BRANCH
       if (userToUpdate.profile === "BRANCH" && full_address) {
         let branch = await this.branchRepository.findOne({ where: { user: { id: userToUpdate.id } } });
 
@@ -140,7 +137,6 @@ class UserController {
         await this.branchRepository.save(branch);
       }
 
-      // 🔹 Salva as alterações no banco
       await this.userRepository.save(userToUpdate);
 
       return res.status(200).json({
@@ -150,6 +146,40 @@ class UserController {
           name: userToUpdate.name,
           email: userToUpdate.email,
           profile: userToUpdate.profile,
+        },
+      });
+
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // 🔹 Atualizar status do usuário (Somente ADMIN)
+  async updateUserStatus(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const userId = req.userId;
+
+      const authenticatedUser = await this.userRepository.findOne({ where: { id: userId } });
+
+      if (!authenticatedUser || authenticatedUser.profile !== "ADMIN") {
+        throw new AppError("Acesso negado! Somente ADMIN pode alterar o status de usuários.", 401);
+      }
+
+      const userToUpdate = await this.userRepository.findOne({ where: { id: parseInt(id) } });
+      if (!userToUpdate) {
+        throw new AppError("Usuário não encontrado!", 404);
+      }
+
+      userToUpdate.status = !userToUpdate.status;
+      await this.userRepository.save(userToUpdate);
+
+      return res.status(200).json({
+        message: "Status do usuário atualizado com sucesso!",
+        user: {
+          id: userToUpdate.id,
+          name: userToUpdate.name,
+          status: userToUpdate.status,
         },
       });
 

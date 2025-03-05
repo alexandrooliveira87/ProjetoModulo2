@@ -8,5 +8,6 @@ const userController = new UserController();
 userRouter.get("/", verifyToken, userController.getAllUsers);
 userRouter.get("/:id", verifyToken, userController.getUserById);
 userRouter.put("/:id", verifyToken, userController.updateUser);
+userRouter.patch("/:id/status", verifyToken, userController.updateUserStatus);
 
 export default userRouter;
