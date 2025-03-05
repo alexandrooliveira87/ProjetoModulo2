@@ -3,6 +3,7 @@ import cors from "cors";
 import { AppDataSource } from "./data-source";
 import userRouter from "./routes/user.routes";
 import authRouter from "./routes/auth.routes";
+import productRouter from "./routes/product.routes";
 import { handleError } from "./middlewares/handleError";
 import logger from "./config/winston";
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/login", authRouter);
+app.use("/products", productRouter); // 🔹 Adicionando rota de produtos
 
 app.get("/", (req, res) => {
   res.send("API está rodando!");
