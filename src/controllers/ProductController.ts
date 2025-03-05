@@ -3,7 +3,6 @@ import { AppDataSource } from "../data-source";
 import { Product } from "../entities/Product";
 import { Branch } from "../entities/Branch";
 import AppError from "../utils/AppError";
-import { AuthRequest } from "../middlewares/auth"; // Importando o tipo correto
 
 class ProductController {
   private productRepository;
@@ -12,45 +11,68 @@ class ProductController {
   constructor() {
     this.productRepository = AppDataSource.getRepository(Product);
     this.branchRepository = AppDataSource.getRepository(Branch);
-    this.create = this.create.bind(this); // 🔹 Corrigindo o escopo do método
+
+    this.createProduct = this.createProduct.bind(this);
+    this.getAllProducts = this.getAllProducts.bind(this);
   }
 
-  async create(req: AuthRequest, res: Response, next: NextFunction) {
+  // 🔹 Criar Produto
+  async createProduct(req: Request, res: Response, next: NextFunction) {
     try {
       const { name, amount, description, url_cover } = req.body;
-
-      if (!req.user) {
-        throw new AppError("Usuário não autenticado!", 401);
-      }
-
-      if (req.user.profile !== "BRANCH") {
-        throw new AppError("Acesso negado! Apenas usuários BRANCH podem cadastrar produtos.", 403);
-      }
-
-      const branch = await this.branchRepository.findOne({ where: { user: { id: req.user.id } } });
-
-      if (!branch) {
-        throw new AppError("Filial não encontrada para este usuário.", 404);
-      }
+      const userId = req.userId;
 
       if (!name || !amount || !description) {
-        throw new AppError("Os campos name, amount e description são obrigatórios.", 400);
+        throw new AppError("Todos os campos obrigatórios devem ser preenchidos.", 400);
       }
 
-      const product = this.productRepository.create({
+      // 🔹 Encontrar a filial vinculada ao usuário logado
+      const branch = await this.branchRepository.findOne({
+        where: { user: { id: userId } },
+      });
+
+      if (!branch) {
+        throw new AppError("Usuário não pertence a uma filial.", 403);
+      }
+
+      // 🔹 Criar novo produto vinculado à filial
+      const newProduct = this.productRepository.create({
         name,
         amount,
         description,
         url_cover,
-        branch,
+        branch, // 🔹 Associar o produto à filial do usuário
       });
 
-      await this.productRepository.save(product);
+      await this.productRepository.save(newProduct);
 
-      return res.status(201).json({
-        message: "Produto cadastrado com sucesso!",
-        product,
+      return res.status(201).json(newProduct);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // 🔹 Listar Produtos
+  async getAllProducts(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.userId;
+
+      // 🔹 Verificar se o usuário pertence a uma filial
+      const branch = await this.branchRepository.findOne({
+        where: { user: { id: userId } },
       });
+
+      if (!branch) {
+        throw new AppError("Acesso negado. Apenas filiais podem listar produtos.", 403);
+      }
+
+      // 🔹 Buscar todos os produtos da filial do usuário
+      const products = await this.productRepository.find({
+        where: { branch: { id: branch.id } },
+        relations: ["branch"],
+      });
+
+      return res.status(200).json({ products });
     } catch (error) {
       next(error);
     }
