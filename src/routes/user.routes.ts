@@ -9,3 +9,4 @@ userRouter.get("/", verifyToken, userController.getAllUsers);
 userRouter.get("/:id", verifyToken, userController.getUserById);
 
 export default userRouter;
+
